@@ -1,4 +1,4 @@
-"use client";
+"use client"; // v1.1
 
 import { useEffect, useMemo, useState } from "react";
 import { Coupon } from "@/lib/types";
@@ -145,3 +145,4 @@ export default function Home() {
     </div>
   );
 }
+
