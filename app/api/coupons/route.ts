@@ -6,5 +6,6 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const store = searchParams.get('store') as 'shein' | 'asos' | 'terminalx' | null;
   const coupons = getAllCoupons(store || undefined);
-  return NextResponse.json({ coupons, lastUpdated: new Date().toISOString() });
+  // Return array directly (not wrapped) for frontend compatibility
+  return NextResponse.json(coupons);
 }
