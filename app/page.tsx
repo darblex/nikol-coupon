@@ -28,7 +28,8 @@ export default function Home() {
         const res = await fetch(`/api/coupons${query}`, { cache: "no-store" });
         if (!res.ok) throw new Error("Failed to load");
         const data = await res.json();
-        const sorted = (data as Coupon[]).sort((a, b) => {
+        const rawCoupons: Coupon[] = Array.isArray(data) ? data : (data.coupons ?? []);
+        const sorted = rawCoupons.sort((a, b) => {
           if (b.last_verified !== a.last_verified) return b.last_verified - a.last_verified;
           return (b.works_count ?? 0) - (a.works_count ?? 0);
         });
